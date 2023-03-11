@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity(name = "recipes")
 public class Recipe {
@@ -32,12 +30,12 @@ public class Recipe {
             name = "recipe_category",
             joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories;
+    private List<Category> categories;
 
     protected Recipe() {
     }
 
-    public Recipe(long id, Timestamp createdAt, String title, String description, Integer servingsPeople, Integer servingsPieces, int timePrepInMinutes, int timeWaitInMinutes, int timeOvenInMinutes, String comment, List<RecipeStep> steps, List<RecipeIngredient> ingredients, Set<Category> categories) {
+    public Recipe(long id, Timestamp createdAt, String title, String description, Integer servingsPeople, Integer servingsPieces, int timePrepInMinutes, int timeWaitInMinutes, int timeOvenInMinutes, String comment, List<RecipeStep> steps, List<RecipeIngredient> ingredients, List<Category> categories) {
         this.id = id;
         this.createdAt = createdAt;
         this.title = title;
@@ -102,7 +100,7 @@ public class Recipe {
         return ingredients;
     }
 
-    public Set<Category> getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 
@@ -111,7 +109,6 @@ public class Recipe {
         return "Recipe{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
                 '}';
     }
 }
