@@ -10,14 +10,19 @@ public class Category {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
     private String name;
+    private int number;
+    private String iconName;
     @ManyToMany(mappedBy="categories")
     private Set<Recipe> recipes;
 
     protected Category() {
     }
 
-    public Category(long id, Set<Recipe> recipes) {
+    public Category(long id, String name, int number, String iconName, Set<Recipe> recipes) {
         this.id = id;
+        this.name = name;
+        this.number = number;
+        this.iconName = iconName;
         this.recipes = recipes;
     }
 
@@ -27,6 +32,14 @@ public class Category {
 
     public String getName() {
         return name;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getIconName() {
+        return iconName;
     }
 }
 
