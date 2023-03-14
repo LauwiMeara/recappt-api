@@ -21,6 +21,7 @@ public class Recipe {
     private int timeWaitInMinutes;
     private int timeOvenInMinutes;
     private String comment;
+    private String imageName;
     @OneToMany(mappedBy="recipe")
     private List<RecipeStep> steps;
     @OneToMany(mappedBy="recipe")
@@ -35,7 +36,7 @@ public class Recipe {
     protected Recipe() {
     }
 
-    public Recipe(long id, Timestamp createdAt, String title, String description, Integer servingsPeople, Integer servingsPieces, int timePrepInMinutes, int timeWaitInMinutes, int timeOvenInMinutes, String comment, List<RecipeStep> steps, List<RecipeIngredient> ingredients, List<Category> categories) {
+    public Recipe(long id, Timestamp createdAt, String title, String description, Integer servingsPeople, Integer servingsPieces, int timePrepInMinutes, int timeWaitInMinutes, int timeOvenInMinutes, String comment, String imageName, List<RecipeStep> steps, List<RecipeIngredient> ingredients, List<Category> categories) {
         this.id = id;
         this.createdAt = createdAt;
         this.title = title;
@@ -46,6 +47,7 @@ public class Recipe {
         this.timeWaitInMinutes = timeWaitInMinutes;
         this.timeOvenInMinutes = timeOvenInMinutes;
         this.comment = comment;
+        this.imageName = imageName;
         this.steps = steps;
         this.ingredients = ingredients;
         this.categories = categories;
@@ -94,6 +96,10 @@ public class Recipe {
     public List<RecipeStep> getSteps() {
         steps.sort(Comparator.comparingInt(RecipeStep::getNumber));
         return steps;
+    }
+
+    public String getImageName() {
+        return imageName;
     }
 
     public List<RecipeIngredient> getIngredients() {
